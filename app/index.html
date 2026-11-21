@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NEON RAIN — Rain City Cover Studio</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><span class="brand-mark">NR</span><div><strong>NEON RAIN</strong><span>Rain City Cover Studio</span></div></div>
+  <div class="sizes" role="group" aria-label="Cover size">
+    <button type="button" data-size="1x1">1:1</button>
+    <button type="button" data-size="4x5">4:5</button>
+    <button type="button" data-size="16x9" class="on">16:9</button>
+  </div>
+  <div class="top-actions">
+    <button type="button" id="undoBtn" title="Undo (Ctrl+Z)">Undo</button>
+    <button type="button" id="redoBtn" title="Redo (Ctrl+Shift+Z)">Redo</button>
+    <button type="button" id="samplesBtn">Try samples</button>
+    <button type="button" id="autoBtn">Auto-fill</button>
+    <button type="button" id="exportAllBtn" class="primary">Export all 3 PNGs</button>
+  </div>
+</header>
+<main class="app">
+  <aside class="rail left">
+    <section class="card">
+      <h2>Photos</h2>
+      <label class="file-btn">Add photos <input id="photoInput" type="file" accept="image/*" multiple hidden></label>
+      <p class="hint">Drop files on the page, or paste an image. Click a thumbnail, then a panel, to place it.</p>
+      <div id="photoTray" class="tray"></div>
+    </section>
+    <section class="card">
+      <h2>Layouts</h2>
+      <div id="layoutPicker" class="picker"></div>
+    </section>
+    <section class="card">
+      <h2>Rain grades</h2>
+      <div id="gradePicker" class="picker"></div>
+    </section>
+    <section class="card">
+      <h2>Type</h2>
+      <div id="typePicker" class="picker"></div>
+    </section>
+  </aside>
+  <section class="stage">
+    <div class="toolbar">
+      <button type="button" id="prevPhotoBtn" title="Previous photo in panel">&larr; photo</button>
+      <button type="button" id="nextPhotoBtn" title="Next photo in panel">photo &rarr;</button>
+      <button type="button" id="flipBtn" title="Flip photo">Flip</button>
+      <button type="button" id="resetPanelBtn" title="Reset panel crop">Reset panel</button>
+      <label>Zoom <input id="zoomSlider" type="range" min="100" max="300" value="100"></label>
+      <span id="panelLabel" class="panel-label">No panel selected</span>
+    </div>
+    <div class="canvas-wrap"><canvas id="cover" width="1920" height="1080"></canvas></div>
+    <div class="minis" id="minis"></div>
+    <p id="status" role="status"></p>
+  </section>
+  <aside class="rail right">
+    <section class="card">
+      <h2>Captions</h2>
+      <label>Title <input id="fTitle" type="text" maxlength="24" value="NEON RAIN"></label>
+      <label>Script subtitle <input id="fScript" type="text" maxlength="40" value="Every drop tells"></label>
+      <label>Tagline <input id="fTagline" type="text" maxlength="48" value="SEVEN LIVES · ONE STORM · NO WAY DRY"></label>
+      <label>Review quote <input id="fQuote" type="text" maxlength="48" value="A CITY THAT NEVER DRIES"></label>
+      <label>Quote source <input id="fQuoteSource" type="text" maxlength="24" value="THE RAIN GAZETTE"></label>
+      <label>Edition tag <input id="fEdition" type="text" maxlength="12" value="VOL. 1"></label>
+      <label>Seal text <input id="fSeal" type="text" maxlength="20" value="ORIGINAL COVER ART"></label>
+      <label>Release line <input id="fRelease" type="text" maxlength="24" value="COMING SOON"></label>
+      <label>Billing block <textarea id="fBilling" rows="3" maxlength="220">A NEON RAIN PICTURE · STARRING YOU AND YOUR CREW · SHOT ON YOUR OWN CAMERA · GRADED IN THE RAIN</textarea></label>
+    </section>
+    <section class="card">
+      <h2>Selected panel</h2>
+      <label>Role tag <input id="fTag" type="text" maxlength="18" value=""></label>
+      <label>Location · time · story <input id="fLoc" type="text" maxlength="60" value=""></label>
+      <p class="hint">Drag inside the panel to pan. Scroll to zoom. Double-click to reset. Drag a panel's number onto another panel to swap.</p>
+    </section>
+    <section class="card">
+      <h2>Export PNG</h2>
+      <div class="export-btns">
+        <button type="button" data-export="1x1">1080 &times; 1080</button>
+        <button type="button" data-export="4x5">1080 &times; 1350</button>
+        <button type="button" data-export="16x9">1920 &times; 1080</button>
+      </div>
+      <p class="hint">Each size is rendered offscreen at its exact pixel size. Photos never leave this device.</p>
+    </section>
+  </aside>
+</main>
+<canvas id="shot" width="1920" height="1080" aria-label="The cover"></canvas>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
